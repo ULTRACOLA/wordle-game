@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Noto+Serif+TC:wght@500;700;900&display=swap');
+
+:root { --paper: #f1ead9; --ink: #24221e; --muted: #746d61; --line: #b6aa92; --accent: #b4452d; --correct: #346b52; --present: #bd8c3c; --absent: #807a70; }
+* { box-sizing: border-box; }
+body { margin: 0; min-height: 100vh; color: var(--ink); background: #d7cdbb; font-family: 'Noto Serif TC', Georgia, serif; }
+body::before { content: ''; position: fixed; inset: 0; pointer-events: none; opacity: .35; background-image: radial-gradient(#6b604c 0.5px, transparent .6px); background-size: 5px 5px; mix-blend-mode: multiply; }
+.paper { position: relative; width: min(100% - 32px, 1080px); min-height: 100vh; margin: 0 auto; padding: 30px clamp(20px, 5vw, 70px) 22px; background: var(--paper); box-shadow: 0 0 45px rgba(50, 37, 19, .18); }
+.masthead { border-top: 5px solid var(--ink); border-bottom: 1px solid var(--ink); padding: 7px 0 10px; text-align: center; }
+.edition, .masthead-meta, .kicker, .footer, .status, .keyboard button, .new-game, .score-heading { font-family: 'DM Mono', monospace; letter-spacing: .07em; }
+.edition { font-size: 11px; text-transform: uppercase; color: var(--muted); }
+h1 { margin: 4px 0 1px; font-size: clamp(44px, 9vw, 78px); line-height: .98; font-weight: 900; letter-spacing: .08em; }
+.masthead-meta { display: flex; justify-content: space-between; font-size: 10px; color: var(--accent); font-weight: 500; }
+.intro { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 28px 0 21px; border-bottom: 1px solid var(--line); }
+.kicker { margin: 0 0 7px; color: var(--accent); font-size: 11px; font-weight: 500; }
+h2 { margin: 0; font-size: clamp(25px, 4vw, 38px); line-height: 1.15; }
+.instructions { margin: 9px 0 0; color: var(--muted); font-size: 14px; }
+.icon-button, .dialog-close { display: grid; place-items: center; width: 38px; height: 38px; border: 1px solid var(--ink); border-radius: 50%; background: transparent; color: var(--ink); font: 700 20px Georgia; cursor: pointer; }
+.icon-button:hover, .dialog-close:hover { color: var(--accent); border-color: var(--accent); }
+.game-layout { display: grid; grid-template-columns: minmax(300px, 560px) 1fr; justify-content: center; gap: clamp(28px, 7vw, 90px); padding: 38px 0 30px; }
+.board-wrap { display: flex; flex-direction: column; align-items: center; }
+.board { display: grid; grid-template-columns: repeat(5, 1fr); gap: 7px; width: min(100%, 350px); }
+.tile { display: grid; place-items: center; aspect-ratio: 1; border: 1px solid var(--line); font: 500 clamp(24px, 6vw, 34px) 'DM Mono', monospace; transition: transform .16s, background .16s; }
+.tile.filled { border-color: var(--ink); transform: scale(.98); }
+.tile.correct, .legend.correct { border-color: var(--correct); background: var(--correct); color: #fff; }
+.tile.present, .legend.present { border-color: var(--present); background: var(--present); color: #fff; }
+.tile.absent, .legend.absent { border-color: var(--absent); background: var(--absent); color: #fff; }
+.tile.reveal { animation: flip .45s ease both; }
+@keyframes flip { 0% { transform: rotateX(0); } 45% { transform: rotateX(90deg); } 100% { transform: rotateX(0); } }
+.status { min-height: 20px; margin: 17px 0 0; color: var(--accent); font-size: 12px; text-align: center; }
+.score-card { align-self: center; max-width: 270px; width: 100%; border-top: 3px solid var(--ink); border-bottom: 1px solid var(--ink); padding: 14px 0 17px; }
+.score-heading { display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--muted); }
+.dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+.stat-row { display: flex; justify-content: space-between; align-items: baseline; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
+.stat-row strong { font: 500 25px 'DM Mono', monospace; }
+.new-game { display: flex; justify-content: space-between; width: 100%; margin-top: 18px; padding: 10px 12px; border: 1px solid var(--ink); background: transparent; color: var(--ink); font-size: 11px; cursor: pointer; }
+.new-game:hover { background: var(--ink); color: var(--paper); }
+.keyboard { display: grid; grid-template-columns: repeat(10, minmax(23px, 1fr)); gap: 6px; max-width: 610px; margin: 0 auto; }
+.keyboard button { min-height: 43px; padding: 0 4px; border: 1px solid var(--line); background: #e5dbc7; color: var(--ink); font-size: 12px; cursor: pointer; }
+.keyboard button.wide { grid-column: span 2; }
+.keyboard button:hover, .keyboard button:focus-visible { border-color: var(--ink); background: #d9cbb2; outline: none; }
+.keyboard button.correct { background: var(--correct); border-color: var(--correct); color: #fff; }
+.keyboard button.present { background: var(--present); border-color: var(--present); color: #fff; }
+.keyboard button.absent { background: var(--absent); border-color: var(--absent); color: #fff; }
+.footer { display: flex; justify-content: space-between; margin-top: 32px; padding-top: 12px; border-top: 1px solid var(--line); color: var(--muted); font-size: 10px; }
+dialog { width: min(90vw, 390px); border: 1px solid var(--ink); padding: 30px; color: var(--ink); background: var(--paper); font-family: 'Noto Serif TC', Georgia, serif; box-shadow: 0 16px 50px rgba(30, 20, 10, .25); }
+dialog::backdrop { background: rgba(36, 34, 30, .35); }
+.dialog-close { position: absolute; top: 14px; right: 14px; border: 0; font-size: 28px; font-weight: 400; }
+dialog p:not(.kicker) { color: var(--muted); font-size: 14px; line-height: 1.8; }
+dialog ul { padding: 0; list-style: none; color: var(--muted); font-size: 13px; line-height: 2.8; }
+.legend { display: inline-grid; place-items: center; width: 27px; height: 27px; margin-right: 8px; font: 500 12px 'DM Mono', monospace; }
+@media (max-width: 700px) { .paper { width: 100%; padding-top: 20px; } .game-layout { grid-template-columns: 1fr; gap: 12px; padding-top: 28px; } .score-card { max-width: 350px; } .keyboard { gap: 4px; } .keyboard button { min-height: 42px; } }
+@media (max-width: 390px) { .paper { padding-left: 14px; padding-right: 14px; } .instructions { font-size: 12px; } .keyboard button { min-height: 38px; font-size: 10px; } }
